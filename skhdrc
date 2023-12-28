@@ -1,4 +1,5 @@
-# ################################################################ #
+#
+################################################################# #
 # THE FOLLOWING IS AN EXPLANATION OF THE GRAMMAR THAT SKHD PARSES. #
 # FOR SIMPLE EXAMPLE MAPPINGS LOOK FURTHER DOWN THIS FILE..        #
 # ################################################################ #
@@ -185,7 +186,7 @@ shift + alt - right: yabai -m window --resize right:20:0
 # decrease window size
 shift + cmd - a : yabai -m window --resize left:20:0
 shift + cmd - s : yabai -m window --resize bottom:0:-20
-shift + cmd - w : yabai -m window --resize top:0:20
+# shift + cmd - w : yabai -m window --resize top:0:20
 shift + cmd - d : yabai -m window --resize right:-20:0
 
 # set insertion point in focused container
@@ -196,7 +197,7 @@ ctrl + alt - l : yabai -m window --insert east
 ctrl + alt - i : yabai -m window --insert stack
 
 # rotate tree
-# alt - r : yabai -m space --rotate 90
+alt - r : yabai -m space --rotate 90
 
 # mirror tree y-axis
 # alt - y : yabai -m space --mirror y-axis
@@ -227,7 +228,7 @@ alt - t : yabai -m window --toggle float && yabai -m window --grid 4:4:1:1:2:2
 alt - s : yabai -m window --toggle sticky
 
 # toggle topmost (keep above other windows)
-alt - o : yabai -m window --toggle topmost
+# alt - o : yabai -m window --toggle topmost
 
 # toggle picture-in-picture
 # alt - p : yabai -m window --toggle border && \
@@ -249,3 +250,7 @@ alt + shift - f : yabai -m query --windows | jq 'map(select(.app == "Firefox").i
 alt + shift - s : yabai -m query --windows | jq 'map(select(.app == "Slack").id)[0]' | xargs yabai -m window --focus
 alt + shift - v : yabai -m query --windows | jq 'map(select(.app == "Code").id)[0]' | xargs yabai -m window --focus
 alt + shift - o : yabai -m query --windows | jq 'map(select(.app == "Obsidian").id)[0]' | xargs yabai -m window --focus
+
+
+# Open tab in brave tor
+cmd + shift - i : pbpaste | xargs open -a "Brave Browser" -n --args --incognito --new-tab --tor
