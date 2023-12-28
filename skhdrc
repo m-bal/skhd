@@ -140,9 +140,9 @@ cmd + alt - 9 : yabai -m space --focus  9 || skhd -k "ctrl + alt + cmd - 9"
 cmd + alt - 0 : yabai -m space --focus 10 || skhd -k "ctrl + alt + cmd - 0"
 
 # send window to desktop and follow focus
-shift + cmd - x : yabai -m window --space recent && yabai -m space --focus recent
-shift + cmd - z : yabai -m window --space prev && yabai -m space --focus prev
-shift + cmd - c : yabai -m window --space next && yabai -m space --focus next
+# shift + cmd - x : yabai -m window --space recent && yabai -m space --focus recent
+# shift + cmd - z : yabai -m window --space prev && yabai -m space --focus prev
+# shift + cmd - c : yabai -m window --space next && yabai -m space --focus next
 shift + cmd - 1 : yabai -m window --space  1 && yabai -m space --focus 1
 shift + cmd - 2 : yabai -m window --space  2 && yabai -m space --focus 2
 shift + cmd - 3 : yabai -m window --space  3 && yabai -m space --focus 3
@@ -237,13 +237,14 @@ alt - o : yabai -m window --toggle topmost
 ctrl + alt - b : yabai -m space --layout bsp
 ctrl + alt - f : yabai -m space --layout float
 ctrl + alt - s : yabai -m space --layout stack
-cmd + shift - r : brew services restart yabai
-
+cmd + shift - r : yabai --restart-service && skhd --restart-service
+cmd + shift - b : brew services restart spacebar
 
 # Go to application
 alt + shift - b : yabai -m query --windows | jq 'map(select(.app == "Brave Browser").id)[0]' | xargs yabai -m window --focus
-alt + shift - t : yabai -m query --windows | jq 'map(select(.app == "kitty").id)[0]' | xargs yabai -m window --focus
 #alt + shift - t : yabai -m query --windows | jq 'map(select(.app == "kitty").id)[0]' | xargs yabai -m window --focus
+alt + shift - t : yabai -m query --windows | jq 'map(select(.app == "WezTerm").id)[0]' | xargs yabai -m window --focus
+# alt + shift - t : yabai -m query --windows | jq 'map(select(.app == "Alacritty").id)[0]' | xargs yabai -m window --focus
 alt + shift - f : yabai -m query --windows | jq 'map(select(.app == "Firefox").id)[0]' | xargs yabai -m window --focus
 alt + shift - s : yabai -m query --windows | jq 'map(select(.app == "Slack").id)[0]' | xargs yabai -m window --focus
 alt + shift - v : yabai -m query --windows | jq 'map(select(.app == "Code").id)[0]' | xargs yabai -m window --focus
