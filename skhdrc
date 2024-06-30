@@ -187,7 +187,7 @@ shift + alt - right: yabai -m window --resize right:20:0
 shift + cmd - a : yabai -m window --resize left:20:0
 shift + cmd - s : yabai -m window --resize bottom:0:-20
 # shift + cmd - w : yabai -m window --resize top:0:20
-shift + cmd - d : yabai -m window --resize right:-20:0
+#shift + cmd - d : yabai -m window --resize right:-20:0
 
 # set insertion point in focused container
 ctrl + alt - h : yabai -m window --insert west
@@ -206,7 +206,7 @@ alt - r : yabai -m space --rotate 90
 # alt - m : yabai -m space --mirror x-axis
 
 # toggle desktop offset
-# alt - a : yabai -m space --toggle padding && yabai -m space --toggle gap
+alt - a : yabai -m space --toggle padding && yabai -m space --toggle gap
 
 # toggle window parent zoom
 # alt - d : yabai -m window --toggle zoom-parent
@@ -231,8 +231,7 @@ alt - s : yabai -m window --toggle sticky
 # alt - o : yabai -m window --toggle topmost
 
 # toggle picture-in-picture
-# alt - p : yabai -m window --toggle border && \
-#           yabai -m window --toggle pip
+# alt - p : yabai -m window --toggle border && yabai -m window --toggle pip
 
 # change layout of desktop
 ctrl + alt - b : yabai -m space --layout bsp
@@ -240,17 +239,21 @@ ctrl + alt - f : yabai -m space --layout float
 ctrl + alt - s : yabai -m space --layout stack
 cmd + shift - r : yabai --restart-service && skhd --restart-service
 cmd + shift - b : brew services restart spacebar
-
+cmd - u : m volume up
+cmd + shift - u : m volume down
 # Go to application
 alt + shift - b : yabai -m query --windows | jq 'map(select(.app == "Brave Browser").id)[0]' | xargs yabai -m window --focus
 #alt + shift - t : yabai -m query --windows | jq 'map(select(.app == "kitty").id)[0]' | xargs yabai -m window --focus
-alt + shift - t : yabai -m query --windows | jq 'map(select(.app == "WezTerm").id)[0]' | xargs yabai -m window --focus
+alt + shift - t : yabai -m query --windows | jq 'map(select((.app == "WezTerm") or (.app == "Tabby") or .app == "Alacritty").id)[0]' | xargs yabai -m window --focus
 # alt + shift - t : yabai -m query --windows | jq 'map(select(.app == "Alacritty").id)[0]' | xargs yabai -m window --focus
 alt + shift - f : yabai -m query --windows | jq 'map(select(.app == "Firefox").id)[0]' | xargs yabai -m window --focus
 alt + shift - s : yabai -m query --windows | jq 'map(select(.app == "Slack").id)[0]' | xargs yabai -m window --focus
+alt + shift - d : yabai -m query --windows | jq 'map(select(.app == "Discord").id)[0]' | xargs yabai -m window --focus
 alt + shift - v : yabai -m query --windows | jq 'map(select(.app == "Code").id)[0]' | xargs yabai -m window --focus
 alt + shift - o : yabai -m query --windows | jq 'map(select(.app == "Obsidian").id)[0]' | xargs yabai -m window --focus
 
 
 # Open tab in brave tor
 cmd + shift - i : pbpaste | xargs open -a "Brave Browser" -n --args --incognito --new-tab --tor
+# Open neovim with today's note
+cmd + shift - d: /Applications/Tabby.app/Contents/MacOS/Tabby profile Notes || /Applications/Tabby.app/Contents/MacOS/Tabby run zsh --login -c '/usr/local/bin/nvim +"Telekasten goto_today"'
